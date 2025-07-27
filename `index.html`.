@@ -104,4 +104,108 @@ Se precisar de ajuda pra colar no GitHub, me avisa!form.addEventListener('submit
       resultadoDiv.innerHTML = `
         <h2>Orçamento Estimado</h2>
         <p><strong>Tipo do móvel:</strong> tipoMovel.charAt(0).toUpperCase() + tipoMovel.slice(1)</p>
-        <p><strong>Material:</strong>{material.toUpperCase()}</p>
+        <p><strong>Material:</strong>{material.toUpperCase()}</p>```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Orçamento de Móveis</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    max-width: 480px;
+    margin: 30px auto;
+    padding: 10px;
+    background: #f9f9f9;
+  }
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+  label {
+    display: block;
+    margin-top: 12px;
+    font-weight: bold;
+  }
+  input, select, button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+  }
+  button {
+    margin-top: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #0056b3;
+  }
+  #resultado {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #007bff;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<h1>Orçamento de Móveis</h1>
+
+<label for="altura">Altura (cm)</label>precoFinal = precoFinal.toFixed(2);
+
+  document.getElementById('resultado').innerText = `Preço estimado: R{precoFinal}`;
+}
+</script>
+
+</body>
+</html>
+```
+
+---
+
+Você pode copiar e colar esse código no seu `index.html`. Se quiser, posso ajudar a melhorar ou adicionar funções. Quer?<input type="number" id="altura" placeholder="Digite a altura" />
+
+<label for="largura">Largura (cm)</label>
+<input type="number" id="largura" placeholder="Digite a largura" />
+
+<label for="profundidade">Profundidade (cm)</label>
+<input type="number" id="profundidade" placeholder="Digite a profundidade" />
+
+<label for="material">Material</label>
+<select id="material">
+  <option value="mdf">MDF</option>
+  <option value="mdp">MDP</option>
+</select>
+
+<button onclick="calcularOrcamento()">Calcular Orçamento</button>
+
+<div id="resultado"></div>
+
+<script>
+function calcularOrcamento() {
+  const altura = Number(document.getElementById('altura').value);
+  const largura = Number(document.getElementById('largura').value);
+  const profundidade = Number(document.getElementById('profundidade').value);
+  const material = document.getElementById('material').value;
+
+  if (!altura || !largura || !profundidade) {
+    alert('Por favor, preencha todas as medidas.');
+    return;
+  }
+
+  // Preço por metro cúbico (exemplo)
+  const precoMDF = 2500; // Rpor m³
+  const precoMDP = 1800; // R por m³
+
+  const volumeM3 = (altura / 100) * (largura / 100) * (profundidade / 100);
+
+  let precoMaterial = material === 'mdf' ? precoMDF : precoMDP;
+  let precoFinal = volumeM3 * precoMaterial;
