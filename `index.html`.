@@ -1,0 +1,107 @@
+<option value="gaveteiro">Gaveteiro</option>
+      <option value="mesa">Mesa</option>
+    </select>
+
+    <label for="altura">Altura (cm):</label>
+    <input type="number" id="altura" min="10" required />
+
+    <label for="largura">Largura (cm):</label>
+    <input type="number" id="largura" min="10" required />
+
+    <label for="profundidade">Profundidade (cm):</label>
+    <input type="number" id="profundidade" min="10" required />
+
+    <label for="material">Material:</label>
+    <select id="material" required>
+      <option value="" disabled selected>Selecione</option>
+      <option value="mdf">MDF</option>
+      <option value="madeira">Madeira Maciça</option>
+      <option value="mdp">MDP</option>
+    </select>
+
+    <label for="quantidade">Quantidade:</label>
+    <input type="number" id="quantidade" min="1" value="1" required />
+
+    <button type="submit">Calcular Orçamento</button>
+  </form>
+
+  <div class="resultado" id="resultado" style="display:none;"></div>
+
+  <script>
+    const form = document.getElementById('formOrcamento');
+    const resultadoDiv = document.getElementById('resultado');
+
+    // Preço base por cm³ para cada material (exemplo fictício)
+    const precoMaterial = {
+      mdf: 0.05,
+      madeira: 0.10,
+      mdp: 0.04
+    };Claro! Aqui está o código básico do site de orçamento para você copiar e colar no arquivo `index.html`:
+
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Orçamento de Móveis Planejados</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 600px; margin: 20px auto; padding: 0 15px; }
+    h1 { text-align: center; color: #2c3e50; }
+    label { display: block; margin-top: 15px; }
+    input, select { width: 100%; padding: 8px; margin-top: 5px; box-sizing: border-box; }
+    button { margin-top: 20px; padding: 10px; width: 100%; background-color: #2980b9; color: white; border: none; cursor: pointer; }
+    button:hover { background-color: #3498db; }
+    .resultado { margin-top: 30px; padding: 15px; border: 1px solid #ccc; background: #f9f9f9; }
+  </style>
+</head>
+<body>
+
+  <h1>Orçamento de Móveis Planejados</h1>
+  <p>Preencha as informações abaixo para calcular seu orçamento estimado.</p>
+
+  <form id="formOrcamento">
+    <label for="tipoMovel">Tipo do móvel:</label>
+    <select id="tipoMovel" required>
+      <option value="" disabled selected>Selecione</option>
+      <option value="armario">Armário</option>
+      <option value="estante">Estante</option><p><strong>Quantidade:</strong> quantidade</p>
+        <p><strong>Preço total estimado:</strong> R ${precoTotal.toFixed(2)}</p>
+      `;
+    });
+  </script>
+
+</body>
+</html>
+```
+
+Se precisar de ajuda pra colar no GitHub, me avisa!form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const tipoMovel = document.getElementById('tipoMovel').value;
+      const altura = parseFloat(document.getElementById('altura').value);
+      const largura = parseFloat(document.getElementById('largura').value);
+      const profundidade = parseFloat(document.getElementById('profundidade').value);
+      const material = document.getElementById('material').value;
+      const quantidade = parseInt(document.getElementById('quantidade').value);
+
+      if (!tipoMovel || !altura || !largura || !profundidade || !material || !quantidade) {
+        alert('Preencha todos os campos corretamente.');
+        return;
+      }
+
+      // Calcula volume em cm³
+      const volume = altura * largura * profundidade;
+
+      // Calcula preço estimado
+      let precoUnitario = volume * precoMaterial[material];
+      // Acrescente 20% para mão de obra
+      precoUnitario *= 1.2;
+
+      const precoTotal = precoUnitario * quantidade;
+
+      resultadoDiv.style.display = 'block';
+      resultadoDiv.innerHTML = `
+        <h2>Orçamento Estimado</h2>
+        <p><strong>Tipo do móvel:</strong> tipoMovel.charAt(0).toUpperCase() + tipoMovel.slice(1)</p>
+        <p><strong>Material:</strong>{material.toUpperCase()}</p>
